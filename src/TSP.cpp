@@ -33,6 +33,19 @@ path_t StageState::get_path() {
  */
 std::vector<cost_t> CostMatrix::get_min_values_in_rows() const {
     throw;  // TODO: Implement it!
+    std::vector<cost_t> min_values;
+    m = size();
+    if m <= 0: return NULL
+    n = this.matrix_[0].size();
+
+    for(int i=0; i < m; i++) {
+        min_values[i] = INF
+        for(int j=0; j < n; j++) {
+            if (this.matrix_[i][j] < min_values[i]) min_values[i] = this.matrix_[i][j];
+        }
+    }
+
+    return min_values;
 }
 
 /**
@@ -49,7 +62,20 @@ cost_t CostMatrix::reduce_rows() {
  */
 std::vector<cost_t> CostMatrix::get_min_values_in_cols() const {
     std::vector<cost_t> min_values;
-    throw;  // TODO: Implement it!
+    int m = size();
+    if m <= 0: return NULL
+
+    int n = matrix_[0].size();
+
+    for(int i=0; i < n; i++) min_values[i] = INF;
+
+    for(int i=0; i < m; i++) {
+        for(int j=0; j < n; j++) {
+            if (matrix_[i][j] < min_values[j]) min_values[j] = matrix_[i][j];
+        }
+    }
+
+    return min_values;
 }
 
 /**
@@ -57,7 +83,21 @@ std::vector<cost_t> CostMatrix::get_min_values_in_cols() const {
  * @return Sum of values reduced in columns.
  */
 cost_t CostMatrix::reduce_cols() {
-    throw;  // TODO: Implement it!
+    std::vector<cost_t> min_values = get_min_values_in_cols();
+    int sum = 0
+    int m = size();
+    if m <= 0: return NULL
+
+    int n = matrix_[0].size();
+
+    for(int i=0; i < m; i++) {
+        for(int j=0; j < n; j++) {
+            matrix_[i][j] -= min_values[j];
+            sum += min_values[j]
+        }
+    }
+
+    return sum;
 }
 
 /**
