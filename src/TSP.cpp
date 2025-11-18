@@ -51,7 +51,17 @@ std::vector<cost_t> CostMatrix::get_min_values_in_rows() const {
  * @return Sum of values reduced in rows.
  */
 cost_t CostMatrix::reduce_rows() {
-    throw;  // TODO: Implement it!
+    std::vector<cost_t> min_values = this->get_min_values_in_rows();
+    std::size_t n = this->size();
+    cost_t sum = std::accumulate(min_values.begin(), min_values.end(), 0);
+
+    for (std::size_t r = 0; r < n; r++) {
+        for (std::size_t c = 0; c < n; c++) {
+            matrix_[r][c] -= min_values[r];
+        }
+    }
+
+    return sum;
 }
 
 /**
@@ -78,7 +88,17 @@ std::vector<cost_t> CostMatrix::get_min_values_in_cols() const {
  * @return Sum of values reduced in columns.
  */
 cost_t CostMatrix::reduce_cols() {
-    throw;  // TODO: Implement it!
+    std::vector<cost_t> min_values = this->get_min_values_in_cols();
+    std::size_t n = this->size();
+    cost_t sum = std::accumulate(min_values.begin(), min_values.end(), 0);
+
+    for (std::size_t r = 0; r < n; r++) {
+        for (std::size_t c = 0; c < n; c++) {
+            matrix_[r][c] -= min_values[c];
+        }
+    }
+
+    return sum;
 }
 
 /**
