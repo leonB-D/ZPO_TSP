@@ -108,7 +108,19 @@ cost_t CostMatrix::reduce_cols() {
  * @return The sum of minimal values in row and col, excluding the intersection value.
  */
 cost_t CostMatrix::get_vertex_cost(std::size_t row, std::size_t col) const {
-    throw;  // TODO: Implement it!
+    cost_t min_row = INF;
+    cost_t min_col = INF;
+    std::size_t n = this->size();
+
+    for (std::size_t r = 0; r < n; r++) {
+        if (r != row and matrix_[r][col] < min_col) min_col = matrix_[r][col];
+    }
+
+    for (std::size_t c = 0; c < n; c++) {
+        if (c != col and matrix_[row][c] < min_row) min_row = matrix_[row][c];
+    }
+
+    return min_row + min_col;
 }
 
 /* PART 2 */
