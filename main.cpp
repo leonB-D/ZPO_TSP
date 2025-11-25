@@ -40,6 +40,11 @@ int main() {
      * 19 : 1 2 0 3 4
     */
 
+    CostMatrix Cm(cm);
+    std::cout<<Cm;
+    std::cout<<Cm.reduce_rows()<<"\n"<<Cm;
+    std::cout<<Cm.reduce_cols()<<"\n"<<Cm;
+
     tsp_solutions_t solutions = solve_tsp(cm);
 
 

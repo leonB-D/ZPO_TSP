@@ -57,7 +57,7 @@ cost_t CostMatrix::reduce_rows() {
 
     for (std::size_t r = 0; r < n; r++) {
         for (std::size_t c = 0; c < n; c++) {
-            matrix_[r][c] -= min_values[r];
+            if (!is_inf(matrix_[r][c])) matrix_[r][c] -= min_values[r];
         }
     }
 
@@ -94,7 +94,7 @@ cost_t CostMatrix::reduce_cols() {
 
     for (std::size_t r = 0; r < n; r++) {
         for (std::size_t c = 0; c < n; c++) {
-            matrix_[r][c] -= min_values[c];
+            if (!is_inf(matrix_[r][c])) matrix_[r][c] -= min_values[c];
         }
     }
 
