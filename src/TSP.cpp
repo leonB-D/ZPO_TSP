@@ -135,14 +135,14 @@ cost_t CostMatrix::get_vertex_cost(std::size_t row, std::size_t col) const {
  */
 NewVertex StageState::choose_new_vertex() {
     std::size_t n = matrix_.size();
-    cost_t max_cost = 0;
+    cost_t max_cost = -1;
     vertex_t max_vert;
 
     for (std::size_t r = 0; r < n; r++) {
         for (std::size_t c = 0; c < n; c++) {
             if (matrix_[r][c] == 0) {
                 cost_t cost = matrix_.get_vertex_cost(r, c);
-                if (cost >= max_cost) {
+                if (cost > max_cost) {
                     max_vert.row = r;
                     max_vert.col = c;
                     max_cost = cost;
@@ -159,7 +159,14 @@ NewVertex StageState::choose_new_vertex() {
  * @param new_vertex
  */
 void StageState::update_cost_matrix(vertex_t new_vertex) {
-    throw;  // TODO: Implement it!
+    std::size_t n = matrix_.size();
+
+    for (std::size_t i = 0; i < n; i++) {
+        matrix_[i][new_vertex.col] = INF;
+        matrix_[new_vertex.row][i] = INF;
+    }
+
+    matrix_[new_vertex.col][new_vertex.row] = INF;
 }
 
 /**
