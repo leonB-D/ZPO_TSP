@@ -4,24 +4,24 @@
 
 
 int main() {
-    cost_matrix_t cm = {{INF, 10, 8,   19, 12},
-                      {10, INF, 20,  6,  3},
-                      {8,   20, INF, 4,  2},
-                      {19,  6,  4, INF,  7},
-                      {12,  3,  2,   7, INF}};
+//    cost_matrix_t cm = {{INF, 10, 8,   19, 12},
+//                      {10, INF, 20,  6,  3},
+//                      {8,   20, INF, 4,  2},
+//                      {19,  6,  4, INF,  7},
+//                      {12,  3,  2,   7, INF}};
 
     /* Rozwiązania:
      * 32 : 2 3 4 1 0
      * 32 : 1 4 3 2 0
      */
 
-//    cost_matrix_t cm {
-//            {INF, 12,   3,  45,   6},
-//            {78, INF,  90,  21,   3},
-//            { 5,  56, INF,  23,  98},
-//            {12,   6,   8, INF,  34},
-//            { 3,  98,   3,   2, INF}
-//    };
+    cost_matrix_t cm {
+            {INF, 12,   3,  45,   6},
+            {78, INF,  90,  21,   3},
+            { 5,  56, INF,  23,  98},
+            {12,   6,   8, INF,  34},
+            { 3,  98,   3,   2, INF}
+    };
 
     /* Rozwiązanie:
      * 30 : 4 3 2 0 1
@@ -39,11 +39,6 @@ int main() {
      * 19 : 4 3 0 2 1
      * 19 : 1 2 0 3 4
     */
-
-    CostMatrix Cm(cm);
-    std::cout<<Cm;
-    std::cout<<Cm.reduce_rows()<<"\n"<<Cm;
-    std::cout<<Cm.reduce_cols()<<"\n"<<Cm;
 
     tsp_solutions_t solutions = solve_tsp(cm);
 
